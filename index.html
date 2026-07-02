@@ -854,33 +854,161 @@
       100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
     }
 
-    /* ── VIDEO INTRO ── */
-    #videoIntro {
+    /* ── DRAGGABLE TIKTOK WINDOW ── */
+    #tiktokWindow {
       position: fixed;
-      inset: 0;
-      z-index: 10001;
+      display: none;
+      flex-direction: column;
+      width: 340px;
+      height: 560px;
+      top: 60px;
+      right: 40px;
+      z-index: 10002;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0,0,0,.75), 0 0 0 1.5px rgba(255,45,120,.45);
       background: #000;
+      user-select: none;
+    }
+    #tiktokVideo { pointer-events: none; }
+    #tiktokTitleBar {
+      background: rgba(18,0,28,.97);
+      border-bottom: 1px solid rgba(255,45,120,.3);
+      padding: 0 14px;
+      height: 46px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition: opacity .6s ease;
+      justify-content: space-between;
+      cursor: grab;
+      flex-shrink: 0;
+      gap: 10px;
     }
-    #videoIntro.hiding { opacity: 0; pointer-events: none; }
-    #introDate {
-      position: absolute;
-      top: 32px;
-      left: 40px;
+    #tiktokTitleBar:active { cursor: grabbing; }
+    #tiktokWindowLabel {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-family: 'Bangers', cursive;
-      font-size: 3.5rem;
-      letter-spacing: 6px;
-      text-transform: uppercase;
+      font-size: 1.05rem;
+      letter-spacing: 2px;
       color: #fff;
-      text-shadow: 0 0 24px rgba(255,255,255,.9), 0 2px 10px rgba(0,0,0,.7);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    #introVideo {
-      width: 100%; height: 100%;
+    #tiktokWindowLabel svg {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+    }
+    .tiktok-win-btn {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.7);
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      font-size: .85rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: background .15s, color .15s;
+      line-height: 1;
+    }
+    .tiktok-win-btn:hover { background: rgba(255,45,120,.4); color: #fff; border-color: var(--pink); }
+    #tiktokContent {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      #tiktokWindow { display: none !important; }
+    }
+
+    /* ── MOBILE TIKTOK SECTION ── */
+    #tiktok-mobile {
+      display: none;
+      padding: 60px 20px;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      #tiktok-mobile { display: flex; }
+    }
+    .ttm-label {
+      font-family: 'Bangers', cursive;
+      font-size: 2.2rem;
+      letter-spacing: 4px;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .ttm-phone {
+      position: relative;
+      width: min(340px, 88vw);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 2px rgba(255,45,120,.5),
+        0 20px 60px rgba(0,0,0,.7),
+        0 0 40px rgba(255,45,120,.2);
+    }
+    .ttm-phone video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 9/16;
       object-fit: cover;
     }
+    .ttm-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 16px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .ttm-views {
+      font-family: 'Bangers', cursive;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(255,45,120,.8);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ttm-handle {
+      font-family: 'Bangers', cursive;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,.7);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ttm-handle svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+    .ttm-follow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      border: none;
+      color: #fff;
+      font-family: 'Bangers', cursive;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      padding: 13px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 0 24px rgba(255,45,120,.5);
+      transition: transform .15s, box-shadow .15s;
+      cursor: pointer;
+    }
+    .ttm-follow:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 40px rgba(255,45,120,.8);
+    }
+    .ttm-follow svg { width: 20px; height: 20px; fill: currentColor; }
 
     /* ── PRELOADER ── */
     #preloader {
@@ -891,59 +1019,27 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
-      overflow: hidden;
+      justify-content: center;
       cursor: pointer;
       transition: opacity .9s ease;
     }
-
     #preloader.hiding { opacity: 0; pointer-events: none; }
-
-    #click-prompt {
-      margin-bottom: 18px;
-    }
-
-    #phone-container {
-      transform-style: preserve-3d;
-      will-change: transform;
-      line-height: 0;
-      margin-bottom: -22vh;
-    }
-
-    #gifCanvas,
-    #gifPlaying {
-      display: block;
-      width: auto;
-      height: 75vh;
-      max-height: 75vh;
-      max-width: 95vw;
-      object-fit: contain;
-      vertical-align: bottom;
-    }
-
     #click-prompt {
       font-family: 'Bangers', cursive;
-      font-size: 1.5rem;
-      letter-spacing: 7px;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      letter-spacing: 8px;
       color: var(--cyan);
-      text-shadow: 0 0 18px var(--cyan);
+      text-shadow: 0 0 22px var(--cyan), 0 0 60px rgba(0,245,255,.4);
       animation: promptPulse 1.6s ease-in-out infinite;
-      transition: opacity .4s;
       user-select: none;
+      text-align: center;
     }
-    @keyframes promptPulse {
-      0%,100% { opacity: 1; }
-      50%      { opacity: .25; }
-    }
-
     .prompt-arrow {
       display: inline-block;
       animation: arrowBounce .8s ease-in-out infinite alternate;
     }
-    @keyframes arrowBounce {
-      from { transform: translateY(0); }
-      to   { transform: translateY(-5px); }
-    }
+    @keyframes promptPulse { 0%,100% { opacity: 1; } 50% { opacity: .2; } }
+    @keyframes arrowBounce { from { transform: translateY(0); } to { transform: translateY(-6px); } }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
@@ -963,19 +1059,10 @@
 </head>
 <body>
 
-<!-- VIDEO INTRO -->
-<div id="videoIntro">
-  <video id="introVideo" autoplay muted playsinline>
-    <source src="sellsol.mp4" type="video/mp4">
-  </video>
-  <div id="introDate">November 2025</div>
-</div>
-
 <!-- PRELOADER -->
-<div id="preloader" style="opacity:0;pointer-events:none">
-  <div id="click-prompt"><span class="prompt-arrow">▼</span> CLICK TO ENTER <span class="prompt-arrow">▼</span></div>
-  <div id="phone-container">
-    <canvas id="gifCanvas"></canvas>
+<div id="preloader">
+  <div id="click-prompt">
+    <span class="prompt-arrow">▼</span>&nbsp; CLICK TO ENTER &nbsp;<span class="prompt-arrow">▼</span>
   </div>
 </div>
 
@@ -1062,7 +1149,24 @@
   <div class="ticker-inner" id="tickerInner"></div>
 </div>
 
-
+<!-- MOBILE TIKTOK SECTION -->
+<section id="tiktok-mobile">
+  <div class="ttm-label">AS SEEN ON TIKTOK</div>
+  <div class="ttm-phone">
+    <video src="tt.mp4" autoplay muted loop playsinline></video>
+    <div class="ttm-overlay">
+      <div class="ttm-views">👁 200,000,000 VIEWS</div>
+      <div class="ttm-handle">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.26 8.26 0 0 0 4.83 1.54V6.79a4.85 4.85 0 0 1-1.06-.1z"/></svg>
+        @pibblefluencer
+      </div>
+    </div>
+  </div>
+  <a class="ttm-follow" href="https://www.tiktok.com/@pibblefluencer" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.26 8.26 0 0 0 4.83 1.54V6.79a4.85 4.85 0 0 1-1.06-.1z"/></svg>
+    FOLLOW ON TIKTOK
+  </a>
+</section>
 
 <!-- TOKENOMICS -->
 <section id="tokenomics">
@@ -1158,6 +1262,50 @@
 
 </section>
 
+<!-- DRAGGABLE TIKTOK WINDOW -->
+<div id="tiktokWindow">
+  <div id="tiktokTitleBar">
+    <span id="tiktokWindowLabel">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.26 8.26 0 0 0 4.83 1.54V6.79a4.85 4.85 0 0 1-1.06-.1z" fill="#fff"/>
+      </svg>
+      @pibblefluencer
+    </span>
+    <div style="display:flex;gap:6px;align-items:center">
+      <button class="tiktok-win-btn" id="tiktokOpenBtn" title="Відкрити у TikTok">↗</button>
+      <button class="tiktok-win-btn" id="tiktokClose" title="Закрити">✕</button>
+    </div>
+  </div>
+  <div id="tiktokContent">
+    <video
+      id="tiktokVideo"
+      src="tt.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      style="width:100%;height:100%;object-fit:cover;display:block;"
+    ></video>
+    <div style="
+      position:absolute;
+      bottom:0;left:0;right:0;
+      padding:18px 16px 14px;
+      background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 100%);
+      font-family:'Bangers',cursive;
+      font-size:1.45rem;
+      letter-spacing:2px;
+      color:#fff;
+      text-shadow:0 0 12px rgba(255,45,120,.8),0 2px 6px rgba(0,0,0,.9);
+      pointer-events:none;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    ">
+      👁 200,000,000 VIEWS
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <p>© 2026 <span>$PIBBLE</span> — The Dancing Dog Coin. All rights reserved.</p>
@@ -1165,26 +1313,6 @@
 </footer>
 
 <script>
-/* ═══════════════════════════════════════════════
-   VIDEO INTRO
-═══════════════════════════════════════════════ */
-(function () {
-  const introEl   = document.getElementById('videoIntro');
-  const introVid  = document.getElementById('introVideo');
-  const preloader = document.getElementById('preloader');
-
-  function showPreloader() {
-    introEl.classList.add('hiding');
-    setTimeout(() => introEl.remove(), 650);
-    preloader.style.transition    = 'opacity .6s ease';
-    preloader.style.opacity       = '1';
-    preloader.style.pointerEvents = 'auto';
-  }
-
-  introVid.addEventListener('ended', showPreloader);
-  introVid.addEventListener('error', () => setTimeout(showPreloader, 1000));
-})();
-
 /* ═══════════════════════════════════════════════
    MUSIC
 ═══════════════════════════════════════════════ */
@@ -1329,13 +1457,15 @@ setInterval(() => {
    DOG CLICK INTERACTION
 ═══════════════════════════════════════════════ */
 const dogWrap = document.getElementById('dogWrap');
-dogWrap.addEventListener('click', e => {
-  dogWrap.classList.remove('spin');
-  void dogWrap.offsetWidth; // reflow
-  dogWrap.classList.add('spin');
-  spawnNotes(e);
-  setTimeout(() => dogWrap.classList.remove('spin'), 700);
-});
+if (dogWrap) {
+  dogWrap.addEventListener('click', e => {
+    dogWrap.classList.remove('spin');
+    void dogWrap.offsetWidth;
+    dogWrap.classList.add('spin');
+    spawnNotes(e);
+    setTimeout(() => dogWrap.classList.remove('spin'), 700);
+  });
+}
 
 /* ═══════════════════════════════════════════════
    FLOATING MUSIC NOTES
@@ -1531,6 +1661,58 @@ setInterval(() => {
 }, 700);
 
 /* ═══════════════════════════════════════════════
+   DRAGGABLE TIKTOK WINDOW
+═══════════════════════════════════════════════ */
+(function () {
+  const win      = document.getElementById('tiktokWindow');
+  const bar      = document.getElementById('tiktokTitleBar');
+  const closeBtn = document.getElementById('tiktokClose');
+  const openBtn  = document.getElementById('tiktokOpenBtn');
+
+  /* ── Кнопки ── */
+  closeBtn.onclick = function (e) {
+    e.stopPropagation();
+    win.style.display = 'none';
+  };
+
+  openBtn.onclick = function (e) {
+    e.stopPropagation();
+    window.open('https://www.tiktok.com/@pibblefluencer', '_blank', 'noopener');
+  };
+
+  /* ── Drag через Pointer Events + capture ── */
+  let ox = 0, oy = 0;
+
+  bar.addEventListener('pointerdown', function (e) {
+    if (e.target.closest('.tiktok-win-btn')) return;
+    e.preventDefault();
+    const rect = win.getBoundingClientRect();
+    /* Фиксируем left/top, убираем right */
+    win.style.right = 'auto';
+    win.style.left  = rect.left + 'px';
+    win.style.top   = rect.top  + 'px';
+    ox = e.clientX - rect.left;
+    oy = e.clientY - rect.top;
+    bar.setPointerCapture(e.pointerId);
+    bar.style.cursor = 'grabbing';
+  });
+
+  bar.addEventListener('pointermove', function (e) {
+    if (!bar.hasPointerCapture(e.pointerId)) return;
+    win.style.left = (e.clientX - ox) + 'px';
+    win.style.top  = (e.clientY - oy) + 'px';
+  });
+
+  bar.addEventListener('pointerup', function () {
+    bar.style.cursor = 'grab';
+  });
+
+  bar.addEventListener('pointercancel', function () {
+    bar.style.cursor = 'grab';
+  });
+})();
+
+/* ═══════════════════════════════════════════════
    CARD ENTRANCE ANIMATIONS
 ═══════════════════════════════════════════════ */
 const slideObserver = new IntersectionObserver(entries => {
@@ -1550,115 +1732,24 @@ document.querySelectorAll('.about-card, .token-card, .step, .rm-card').forEach((
 });
 </script>
 
-<!-- omggif – GIF frame decoder (exposes global GifReader) -->
-<script src="https://cdn.jsdelivr.net/npm/omggif@1.0.10/omggif.js"></script>
 <script>
 /* ═══════════════════════════════════════════════
-   PRELOADER — phone.gif intro (frame-by-frame, no loop)
+   PRELOADER — click to enter
 ═══════════════════════════════════════════════ */
-(async function () {
-  const preloader      = document.getElementById('preloader');
-  const phoneContainer = document.getElementById('phone-container');
-  const gifCanvas      = document.getElementById('gifCanvas');
-  const gifCtx         = gifCanvas.getContext('2d');
-  const clickPrompt    = document.getElementById('click-prompt');
+(function () {
+  const preloader = document.getElementById('preloader');
+  let entered = false;
 
-  /* ── Smooth 3-D tilt toward cursor ── */
-  let tRX = 0, tRY = 0, cRX = 0, cRY = 0, tiltOn = true;
-
-  window.addEventListener('mousemove', e => {
-    const cx = window.innerWidth  / 2;
-    const cy = window.innerHeight / 2;
-    tRX = -((e.clientY - cy) / cy) * 20;
-    tRY =  ((e.clientX - cx) / cx) * 20;
-  });
-  window.addEventListener('deviceorientation', e => {
-    tRX = Math.max(-20, Math.min(20, e.beta  - 45));
-    tRY = Math.max(-20, Math.min(20, e.gamma));
-  });
-  (function tiltLoop() {
-    if (!tiltOn) return;
-    cRX += (tRX - cRX) * 0.07;
-    cRY += (tRY - cRY) * 0.07;
-    phoneContainer.style.transform =
-      `perspective(900px) rotateX(${cRX}deg) rotateY(${cRY}deg)`;
-    requestAnimationFrame(tiltLoop);
-  })();
-
-  /* ── Parse GIF — все кадры в память ── */
-  let frames = [];   // [{ imageData, delay }]
-  let parsed = false;
-
-  try {
-    const res = await fetch('phone.gif');
-    const buf = await res.arrayBuffer();
-    const gr  = new GifReader(new Uint8Array(buf));
-    const W   = gr.width, H = gr.height;
-
-    gifCanvas.width  = W;
-    gifCanvas.height = H;
-
-    /* Composite кадры (учитываем disposal method через offscreen) */
-    const composite = new Uint8ClampedArray(W * H * 4);
-    for (let i = 0; i < gr.numFrames(); i++) {
-      const info  = gr.frameInfo(i);
-      const patch = new Uint8ClampedArray(W * H * 4);
-      gr.decodeAndBlitFrameRGBA(i, patch);
-      composite.set(patch);
-      frames.push({
-        imageData: new ImageData(new Uint8ClampedArray(composite), W, H),
-        delay: (info.delay > 0 ? info.delay : 10) * 10  // centiseconds → ms
-      });
-    }
-
-    /* Показываем первый кадр */
-    gifCtx.putImageData(frames[0].imageData, 0, 0);
-    parsed = true;
-
-  } catch (err) {
-    console.warn('[preloader] GIF parse error:', err);
-    const img = new Image();
-    img.onload = () => {
-      gifCanvas.width  = img.naturalWidth  || 320;
-      gifCanvas.height = img.naturalHeight || 480;
-      gifCtx.drawImage(img, 0, 0);
-    };
-    img.src = 'phone.gif';
-  }
-
-  /* ── Покадровое воспроизведение (один раз, без loop) ── */
-  function playFrames(onDone) {
-    if (!parsed || frames.length === 0) {
-      setTimeout(onDone, 2500);
-      return;
-    }
-    let idx = 0;
-    function nextFrame() {
-      gifCtx.putImageData(frames[idx].imageData, 0, 0);
-      if (idx < frames.length - 1) {
-        setTimeout(() => { idx++; nextFrame(); }, frames[idx].delay);
-      } else {
-        /* Последний кадр — ждём чуть и вызываем onDone */
-        setTimeout(onDone, 300);
-      }
-    }
-    nextFrame();
-  }
-
-  /* ── Клик → воспроизведение → открыть сайт ── */
-  let played = false;
   preloader.addEventListener('click', () => {
-    if (played) return;
-    played = true;
-
-    clickPrompt.style.opacity = '0';
-
-    playFrames(() => {
-      tiltOn = false;
-      preloader.classList.add('hiding');
-      startMusic();
-      setTimeout(() => preloader.remove(), 950);
-    });
+    if (entered) return;
+    entered = true;
+    preloader.classList.add('hiding');
+    startMusic();
+    setTimeout(() => {
+      preloader.remove();
+      const tw = document.getElementById('tiktokWindow');
+      if (tw) tw.style.display = 'flex';
+    }, 950);
   });
 })();
 </script>
