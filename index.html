@@ -919,8 +919,63 @@
       position: relative;
       overflow: hidden;
     }
+    .tiktok-win {
+      position: fixed;
+      display: none;
+      flex-direction: column;
+      width: 300px;
+      height: 520px;
+      z-index: 10002;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0,0,0,.75), 0 0 0 1.5px rgba(255,45,120,.45);
+      background: #000;
+      user-select: none;
+    }
+    #tiktokWindow2 { top: 80px; right: 390px; }
+    #tiktokWindow3 { top: 100px; right: 720px; }
+    .tiktokBar {
+      background: rgba(18,0,28,.97);
+      border-bottom: 1px solid rgba(255,45,120,.3);
+      padding: 0 14px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: grab;
+      flex-shrink: 0;
+      gap: 10px;
+    }
+    .tiktokBar:active { cursor: grabbing; }
+    .tiktokBarLabel {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Bangers', cursive;
+      font-size: 1.05rem;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+    .tiktokBody {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .ttwin-views {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 16px 14px;
+      background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 100%);
+      font-family: 'Bangers', cursive;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(255,45,120,.8);
+      pointer-events: none;
+    }
     @media (max-width: 768px) {
       #tiktokWindow { display: none !important; }
+      .tiktok-win   { display: none !important; }
     }
 
     /* ── MOBILE TIKTOK SECTION ── */
@@ -1297,6 +1352,46 @@
   </div>
 </div>
 
+<!-- DRAGGABLE TIKTOK WINDOW 2 -->
+<div id="tiktokWindow2" class="tiktok-win">
+  <div class="tiktokBar">
+    <span class="tiktokBarLabel">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.26 8.26 0 0 0 4.83 1.54V6.79a4.85 4.85 0 0 1-1.06-.1z" fill="#fff"/>
+      </svg>
+      @pibblefluencer
+    </span>
+    <div style="display:flex;gap:6px;align-items:center">
+      <button class="tiktok-win-btn tw-open" data-url="https://www.tiktok.com/@pibblefluencer" title="Open TikTok">↗</button>
+      <button class="tiktok-win-btn tw-close" title="Close">✕</button>
+    </div>
+  </div>
+  <div class="tiktokBody">
+    <video src="tt2.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>
+    <div class="ttwin-views">👁 200,000,000 VIEWS</div>
+  </div>
+</div>
+
+<!-- DRAGGABLE TIKTOK WINDOW 3 -->
+<div id="tiktokWindow3" class="tiktok-win">
+  <div class="tiktokBar">
+    <span class="tiktokBarLabel">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.26 8.26 0 0 0 4.83 1.54V6.79a4.85 4.85 0 0 1-1.06-.1z" fill="#fff"/>
+      </svg>
+      @pibblefluencer
+    </span>
+    <div style="display:flex;gap:6px;align-items:center">
+      <button class="tiktok-win-btn tw-open" data-url="https://www.tiktok.com/@pibblefluencer" title="Open TikTok">↗</button>
+      <button class="tiktok-win-btn tw-close" title="Close">✕</button>
+    </div>
+  </div>
+  <div class="tiktokBody">
+    <video src="tt3.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>
+    <div class="ttwin-views">👁 200,000,000 VIEWS</div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <p>© 2026 <span>$PIBBLE</span> — The Dancing Dog Coin. All rights reserved.</p>
@@ -1548,6 +1643,7 @@ document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe
 ═══════════════════════════════════════════════ */
 function drawDonut() {
   const c = document.getElementById('donutChart');
+  if (!c) return;
   const cx2 = c.getContext('2d');
   const cx = c.width / 2, cy = c.height / 2, r = 100, innerR = 65;
   const slices = [
@@ -1652,56 +1748,133 @@ setInterval(() => {
 }, 700);
 
 /* ═══════════════════════════════════════════════
-   DRAGGABLE TIKTOK WINDOW
+   FLOATING + DRAGGABLE TIKTOK WINDOWS (desktop only)
+   Вызывается ПОСЛЕ того как окна показаны (display:flex)
 ═══════════════════════════════════════════════ */
-(function () {
-  const win      = document.getElementById('tiktokWindow');
-  const bar      = document.getElementById('tiktokTitleBar');
-  const closeBtn = document.getElementById('tiktokClose');
-  const openBtn  = document.getElementById('tiktokOpenBtn');
+window.initFloatingWindows = function () {
+  if (window.innerWidth <= 768) return;
 
-  /* ── Кнопки ── */
-  closeBtn.onclick = function (e) {
-    e.stopPropagation();
-    win.style.display = 'none';
-  };
+  var TT_URL = 'https://www.tiktok.com/@pibblefluencer';
 
-  openBtn.onclick = function (e) {
-    e.stopPropagation();
-    window.open('https://www.tiktok.com/@pibblefluencer', '_blank', 'noopener');
-  };
+  /* Собираем все окна с их барами */
+  var pairs = [
+    { win: document.getElementById('tiktokWindow'),  bar: document.getElementById('tiktokTitleBar') },
+    { win: document.getElementById('tiktokWindow2'), bar: document.querySelector('#tiktokWindow2 .tiktokBar') },
+    { win: document.getElementById('tiktokWindow3'), bar: document.querySelector('#tiktokWindow3 .tiktokBar') }
+  ].filter(function(p) { return p.win && p.bar; });
 
-  /* ── Drag через Pointer Events + capture ── */
-  let ox = 0, oy = 0;
-
-  bar.addEventListener('pointerdown', function (e) {
-    if (e.target.closest('.tiktok-win-btn')) return;
-    e.preventDefault();
-    const rect = win.getBoundingClientRect();
-    /* Фиксируем left/top, убираем right */
-    win.style.right = 'auto';
-    win.style.left  = rect.left + 'px';
-    win.style.top   = rect.top  + 'px';
-    ox = e.clientX - rect.left;
-    oy = e.clientY - rect.top;
-    bar.setPointerCapture(e.pointerId);
-    bar.style.cursor = 'grabbing';
+  /* Кнопки */
+  var c0 = document.getElementById('tiktokClose'), o0 = document.getElementById('tiktokOpenBtn');
+  if (c0) c0.onclick = function(e) { e.stopPropagation(); pairs[0] && (pairs[0].win.style.display = 'none'); };
+  if (o0) o0.onclick = function(e) { e.stopPropagation(); window.open(TT_URL, '_blank', 'noopener'); };
+  document.querySelectorAll('.tiktok-win').forEach(function(w) {
+    w.querySelectorAll('.tw-close').forEach(function(b) { b.onclick = function(e) { e.stopPropagation(); w.style.display = 'none'; }; });
+    w.querySelectorAll('.tw-open').forEach(function(b)  { b.onclick = function(e) { e.stopPropagation(); window.open(TT_URL, '_blank', 'noopener'); }; });
   });
 
-  bar.addEventListener('pointermove', function (e) {
-    if (!bar.hasPointerCapture(e.pointerId)) return;
-    win.style.left = (e.clientX - ox) + 'px';
-    win.style.top  = (e.clientY - oy) + 'px';
+  var VW = window.innerWidth, VH = window.innerHeight;
+  window.addEventListener('resize', function() { VW = window.innerWidth; VH = window.innerHeight; });
+
+  /* Инициализация состояний — окна уже видимы, размеры реальные */
+  var states = pairs.map(function(p, i) {
+    var W = p.win.offsetWidth, H = p.win.offsetHeight;
+    /* Разброс стартовых позиций по экрану */
+    var x = Math.random() * Math.max(1, VW - W);
+    var y = Math.random() * Math.max(1, VH - H);
+    var speed = 1.5 + Math.random() * 0.8;
+    var angle = (Math.PI * 2 / pairs.length) * i + Math.random() * 1.0;
+    p.win.style.right = 'auto';
+    p.win.style.left  = x + 'px';
+    p.win.style.top   = y + 'px';
+    return {
+      win: p.win, bar: p.bar,
+      x: x, y: y, w: W, h: H,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      dragging: false
+    };
   });
 
-  bar.addEventListener('pointerup', function () {
-    bar.style.cursor = 'grab';
-  });
+  /* Физика */
+  function loop() {
+    var i, j, a, b, ox, oy, t;
 
-  bar.addEventListener('pointercancel', function () {
-    bar.style.cursor = 'grab';
+    for (i = 0; i < states.length; i++) {
+      var s = states[i];
+      if (s.dragging) continue;
+
+      s.x += s.vx;
+      s.y += s.vy;
+
+      /* Отскок от стен — скорость всегда направлена внутрь */
+      if (s.x < 0)          { s.x = 0;          s.vx =  Math.abs(s.vx); }
+      if (s.x > VW - s.w)   { s.x = VW - s.w;   s.vx = -Math.abs(s.vx); }
+      if (s.y < 0)          { s.y = 0;          s.vy =  Math.abs(s.vy); }
+      if (s.y > VH - s.h)   { s.y = VH - s.h;   s.vy = -Math.abs(s.vy); }
+
+      s.win.style.left = s.x + 'px';
+      s.win.style.top  = s.y + 'px';
+    }
+
+    /* Столкновения */
+    for (i = 0; i < states.length; i++) {
+      for (j = i + 1; j < states.length; j++) {
+        a = states[i]; b = states[j];
+        if (a.dragging || b.dragging) continue;
+        ox = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+        oy = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+        if (ox <= 0 || oy <= 0) continue;
+        if (ox < oy) {
+          t = a.vx; a.vx = b.vx; b.vx = t;
+          if (a.x < b.x) { a.x -= ox / 2; b.x += ox / 2; }
+          else            { a.x += ox / 2; b.x -= ox / 2; }
+        } else {
+          t = a.vy; a.vy = b.vy; b.vy = t;
+          if (a.y < b.y) { a.y -= oy / 2; b.y += oy / 2; }
+          else            { a.y += oy / 2; b.y -= oy / 2; }
+        }
+      }
+    }
+
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  /* Drag */
+  states.forEach(function(s) {
+    s.bar.addEventListener('mousedown', function(e) {
+      if (e.button !== 0 || e.target.closest('.tiktok-win-btn')) return;
+      s.dragging = true;
+      var dx = e.clientX - s.x, dy = e.clientY - s.y;
+      var prevX = s.x, prevY = s.y;
+      s.bar.style.cursor = 'grabbing';
+      e.preventDefault();
+
+      function onMove(e) {
+        prevX = s.x; prevY = s.y;
+        s.x = Math.max(0, Math.min(VW - s.w, e.clientX - dx));
+        s.y = Math.max(0, Math.min(VH - s.h, e.clientY - dy));
+        s.win.style.left = s.x + 'px';
+        s.win.style.top  = s.y + 'px';
+      }
+      function onUp() {
+        var dvx = s.x - prevX, dvy = s.y - prevY;
+        var spd = Math.sqrt(dvx * dvx + dvy * dvy);
+        if (spd > 0.1) {
+          s.vx = dvx * 0.5; s.vy = dvy * 0.5;
+          var maxSpd = 3, m = Math.sqrt(s.vx*s.vx + s.vy*s.vy);
+          if (m > maxSpd) { s.vx = s.vx/m*maxSpd; s.vy = s.vy/m*maxSpd; }
+        }
+        s.dragging = false;
+        s.bar.style.cursor = 'grab';
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+      }
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    });
   });
-})();
+};
 
 /* ═══════════════════════════════════════════════
    CARD ENTRANCE ANIMATIONS
@@ -1738,8 +1911,11 @@ document.querySelectorAll('.about-card, .token-card, .step, .rm-card').forEach((
     startMusic();
     setTimeout(() => {
       preloader.remove();
-      const tw = document.getElementById('tiktokWindow');
-      if (tw) tw.style.display = 'flex';
+      ['tiktokWindow','tiktokWindow2','tiktokWindow3'].forEach(id => {
+        var el = document.getElementById(id);
+        if (el) el.style.display = 'flex';
+      });
+      if (window.initFloatingWindows) window.initFloatingWindows();
     }, 950);
   });
 })();
